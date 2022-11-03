@@ -32,6 +32,7 @@ jobs:
           publish_branch: deployment
           # Build output to publish to the `deployment` branch:
           publish_dir: ./build
+          cname: docs.illusivesoulworks.com
           # The following lines assign commit authorship to the official
           # GH-Actions bot for deploys to `gh-pages` branch:
           # https://github.com/actions/checkout/issues/13#issuecomment-724415212
