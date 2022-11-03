@@ -83,6 +83,9 @@ const config = {
           },
         ],
       },
+	  colorMode: {
+		  defaultMode: 'dark'
+	  },
       footer: {
         style: 'dark',
         copyright: `Copyright © ${new Date().getFullYear()} Illusive Soulworks, Built with Docusaurus.`,
