@@ -33,7 +33,13 @@ potential fields.
 * `slots`
   * An array of `identifier` names for registered slot types.
 
-All of the listed slots will be associated to all of the listed entities.
+All the listed slots will be associated to all the listed entities.
+
+:::caution
+Adding multiple of the same `identifier` to the `slots` array will **not** add multiple slots. Each entry in the `slots`
+array represents a [registered slot type](./slot-register.md) and the entries do not stack, please refer to that page in
+order to change slot type behavior including default size.
+:::
 
 ## Example
 ---
