@@ -60,4 +60,21 @@ This slot type will have a relatively low order of 20, which will make it appear
 size of 4 which means that it will register 4 slots to any given entity by default. For the GUI, it uses an icon
 located at `curios:slot/empty_custom_slot`. It also has added a cosmetic slot so there will be an additional slot for
 cosmetic items next to it in the Curios GUI.
+
+## Modifying a Slot Type
+---
+The process of modifying a slot type is identical to registering a new slot type, except using the same `identifier` as
+the existing slot type. All slot types that share an `identifier` will be merged according to the **Merge Behavior** of
+each field as outlined above.
+
+### Example
+Curios natively provides data for the `ring` slot, which defaults the size to 1. In order to increase the size to 2,
+create a `ring.json` slot registration file in the datapack with the contents:
+```json
+{
+  "size": 2
+}
+```
+This will merge the size data of this registration with the existing registration provided by Curios, keeping all of the
+other data intact while increasing the number of slots to 2.
   
