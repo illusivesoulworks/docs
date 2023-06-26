@@ -1,0 +1,8 @@
+{
+  "label": "Diet",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "A Minecraft mod featuring a customizable food group-based nutrition and diet system."
+  }
+}
