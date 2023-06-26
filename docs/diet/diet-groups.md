@@ -17,7 +17,7 @@ available and how many are tracked. If you are unfamiliar with datapacks, it is 
 proceeding to the rest of this page.
 
 :::tip
-If using one or more of the [Built-in Food Groups](#built-in-food-groups) without changes, this step can be skipped and
+If using one or more of the [Built-in Food Groups](#-built-in-food-groups) without changes, this step can be skipped and
 [Customizing Diet Suites](diet-suites.md) can be read instead.
 :::
 
