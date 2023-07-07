@@ -18,9 +18,10 @@ components: status effects, attribute modifiers, and conditions.
 ---
 The file should be a `.json` file located in the `~/data/(namespace)/diet/suites/` folder of the datapack.
 
-:::note
-The file can be named anything.
+The file name is the `identifier` used for the suite. An `identifier` can be anything that is lowercased with no
+special characters. If customizing or replacing the default suite, the file should be named `builtin.json`.
 
+:::note
 The `(namespace)` field should be replaced by the namespace chosen for this portion of the datapack. If this is a part
 of a mod, the namespace is usually the mod ID. If this is part of a user-defined datapack, then the namespace can be
 anything that is lowercased with no special characters.

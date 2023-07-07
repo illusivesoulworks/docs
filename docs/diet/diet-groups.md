@@ -21,6 +21,11 @@ If using one or more of the [Built-in Food Groups](#-built-in-food-groups) witho
 [Customizing Diet Suites](diet-suites.md) can be read instead.
 :::
 
+:::caution
+Creating a food group will not automatically make it appear in-game. Food groups need to be assigned to a [Diet Suite](diet-suites.md)
+first and only then will appear when a player has that particular suite of food groups.
+:::
+
 ## Directory
 ---
 The file should be a `.json` file with the `name` for the food group to be registered. The `name` will be used to
