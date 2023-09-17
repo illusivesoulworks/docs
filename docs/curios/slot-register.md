@@ -2,11 +2,12 @@
 sidebar_position: 1
 ---
 
-# Register a Slot Type
+# Registering Slot Types
 
-A tutorial on how to register a slot type that is recognized by Curios.
+A tutorial on how to register slot types that are recognized by Curios.
 
 ## Overview
+---
 Beginning in 1.20, the recommended way to register a slot type is through a datapack. If you are unfamiliar with
 datapacks, it is recommended to read through the [wiki page](https://minecraft.fandom.com/wiki/Data_pack) in order to
 understand the concept and structure before proceeding to the rest of this page.

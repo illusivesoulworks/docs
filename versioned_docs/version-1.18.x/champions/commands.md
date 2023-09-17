@@ -4,7 +4,7 @@ sidebar_position: 6
 
 # Commands
 
-All of the Champions commands are available through `/champions`.
+All the Champions commands are available through `/champions`.
 
 ## Command Guide
 |Syntax|Meaning|

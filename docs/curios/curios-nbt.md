@@ -2,11 +2,12 @@
 sidebar_position: 12
 ---
 
-# Curio Item NBT
+# Curios Attribute Modifiers (NBT)
 
 A tutorial on how to edit a curio item's NBT data to add attribute modifiers when the item is worn in a curio slot.
 
 ## Overview
+---
 Attribute modifiers used in item NBT for regular equipment slots will not work with curio slots. This is because the
 attribute modifiers are coded to work only in specific slots, and it will not recognize the custom curio slots. In order
 to grant this functionality, Curios adds its own method of adding NBT attribute modifiers in items.

@@ -7,7 +7,7 @@ sidebar_position: 10
 A list of commonly used slot types that are already defined in Curios for developers to use.
 
 ## Overview
-
+---
 One of the benefits of using Curios is that multiple developers can share slot types between each other, allowing
 mechanics and items to cooperate seamlessly. As long as the `identifier` for the slot type is the same, the slot types
 will be merged together upon registration. To reduce the need for redundant code and data, Curios provides a preset

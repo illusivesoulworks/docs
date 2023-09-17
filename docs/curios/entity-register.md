@@ -2,11 +2,12 @@
 sidebar_position: 3
 ---
 
-# Add a Slot Type to an Entity
+# Adding Slot Types to Entities
 
-A tutorial on how to add a registered slot type to an entity.
+A tutorial on how to add registered slot types to entities.
 
 ## Overview
+---
 Beginning in 1.20, the recommended way to add a registered slot type to an entity is through a datapack. If you are
 unfamiliar with datapacks, it is recommended to read through the [wiki page](https://minecraft.fandom.com/wiki/Data_pack)
 in order to understand the concept and structure before proceeding to the rest of this page.

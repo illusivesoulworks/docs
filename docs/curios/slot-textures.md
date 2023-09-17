@@ -2,16 +2,17 @@
 sidebar_position: 5
 ---
 
-# Adding a Custom Slot Texture
+# Adding Custom Slot Textures
 
-A tutorial on how to add a custom slot texture to a slot type.
+A tutorial on how to add custom slot textures to slot types.
 
 ## Overview
+---
 Registering a new custom slot texture can be done through a resource pack. If you are
 unfamiliar with resource packs, it is recommended to read through the [wiki page](https://minecraft.fandom.com/wiki/Resource_pack)
 in order to understand the concept and structure before proceeding to the rest of this page.
 
-# Registering a Slot Texture
+## Registering a Slot Texture
 ---
 Create a new resource directory `assets/(namespace)/textures/slot` and place any `.png` file in the `slot` folder.
 
@@ -27,7 +28,7 @@ part of a mod, the namespace is usually the mod ID. If this is part of a user-de
 can be anything that is lowercased with no special characters.
 :::
 
-# Using a Slot Texture
+## Using a Slot Texture
 ---
 
 When entering the fields of the `.json` slot registration files as described in [Register a Slot Type](./slot-register),

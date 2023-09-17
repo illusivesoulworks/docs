@@ -91,6 +91,7 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} Illusive Soulworks, Built with Docusaurus.`,
       },
       prism: {
+        additionalLanguages: ['java', 'gradle'],
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
