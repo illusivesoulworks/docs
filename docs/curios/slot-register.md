@@ -53,6 +53,15 @@ related to that slot type.
 | `use_native_gui` | boolean                      | `true`                          | `false`  | When `false`, does not add the slot type to the native Curios GUI                                                    | `false` if any do not use the native GUI    |
 | `render_toggle`  | boolean                      | `true`                          | `false`  | When `false`, does not allow the slot type to toggle its rendering                                                   | `false` if any do not allow render toggling |
 
+:::info
+**Which `operation` value should I use?**
+
+In most cases, `"SET"` (also the default if no value is defined) will accomplish the desired result. It denotes that a
+slot type should have a certain amount of slots by default, with the highest value among all consumers being used.
+`"ADD"`and `"REMOVE"` are inherent slot modifiers and are based on the amount of slots specified by all `"SET"`
+operations, the result of which can change based on the mods/datapacks loaded.
+:::
+
 ## Example
 ---
 ```json
