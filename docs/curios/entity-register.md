@@ -12,6 +12,9 @@ Beginning in 1.20, the recommended way to add a registered slot type to an entit
 unfamiliar with datapacks, it is recommended to read through the [wiki page](https://minecraft.fandom.com/wiki/Data_pack)
 in order to understand the concept and structure before proceeding to the rest of this page.
 
+[Registered slot types](./slot-register.md) will all be available for use but will not appear in-game until they are
+added to one or more entities.
+
 ## Directory
 ---
 The file should be a `.json` file located in the `~/data/(namespace)/curios/entities/` folder of the datapack.

@@ -12,9 +12,15 @@ Beginning in 1.20, the recommended way to register a slot type is through a data
 datapacks, it is recommended to read through the [wiki page](https://minecraft.fandom.com/wiki/Data_pack) in order to
 understand the concept and structure before proceeding to the rest of this page.
 
-:::tip
 If using one of the [Preset Slot Types](./preset-slots), this step can be skipped since Curios natively provides the
 needed datapack registration.
+
+:::info
+**Why are my registered slot types not appearing?**
+
+Registering slot types makes them available for use; however, they are _not_ added to any entities (including players)
+by default. In order to add them to an entity, please refer to [the next step](./entity-register.md) on adding slot
+types to entities.
 :::
 
 ## Directory
