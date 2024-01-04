@@ -52,14 +52,14 @@ In this file, type this:
   "values": []
 }
 ```
-This is the basic structure for a tag file. `replace` dictates whether or not you're just adding tags or completely overriding tags. I recommend leaving this at `false` unless you know what you're doing. `values` is the property you're most interested in. This is where you list alllll of the items that you want to add to the group. For example, if you'd like to add an item called `"examplemod:bacon"`:
+This is the basic structure for a tag file. `replace` dictates whether you're just adding tags or completely overriding tags. I recommend leaving this at `false` unless you know what you're doing. `values` is the property you're most interested in. This is where you list alllll of the items that you want to add to the group. For example, if you'd like to add an item called `"examplemod:bacon"`:
 ```
 {
   "replace": "false",
   "values": ["examplemod:bacon"]
 }
 ```
-You can put as many values as you want here but they must all be comma separated inside of the brackets. Like so:
+You can put as many values as you want here, but they must all be comma separated inside the brackets. Like so:
 ```
 {
   "replace": "false",
