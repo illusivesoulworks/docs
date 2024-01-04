@@ -219,7 +219,8 @@ below or equal to 100% (`1.0`).
 ---
 This is the built-in diet suite that is configured by default, aptly named `builtin`. 
 
-<details><summary>builtin.json</summary>
+<details>
+  <summary>builtin.json</summary>
 
 ```json
 {

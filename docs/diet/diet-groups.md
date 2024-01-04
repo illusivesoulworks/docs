@@ -109,7 +109,8 @@ creating a resource pack, please refer to [this guide](https://minecraft.fandom.
 These food groups are built-in to Diet natively and can be added to [Diet Suites](diet-suites.md) or individually
 customized by creating a new datapack file that overrides its contents.
 
-<details><summary>fruits.json</summary>
+<details>
+  <summary>fruits.json</summary>
 
 ```json
 {
@@ -124,7 +125,8 @@ customized by creating a new datapack file that overrides its contents.
 ```
 </details>
 
-<details><summary>grains.json</summary>
+<details>
+  <summary>grains.json</summary>
 
 ```json
 {
@@ -139,7 +141,8 @@ customized by creating a new datapack file that overrides its contents.
 ```
 </details>
 
-<details><summary>proteins.json</summary>
+<details>
+  <summary>proteins.json</summary>
 
 ```json
 {
@@ -154,7 +157,8 @@ customized by creating a new datapack file that overrides its contents.
 ```
 </details>
 
-<details><summary>vegetables.json</summary>
+<details>
+  <summary>vegetables.json</summary>
 
 ```json
 {
@@ -169,7 +173,8 @@ customized by creating a new datapack file that overrides its contents.
 ```
 </details>
 
-<details><summary>sugars.json</summary>
+<details>
+  <summary>sugars.json</summary>
 
 ```json
 {
