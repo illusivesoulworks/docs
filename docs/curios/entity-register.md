@@ -29,13 +29,17 @@ anything that is lowercased with no special characters.
 
 ## Syntax
 ---
-The structure of the `.json` file for the entity configuration consists of a top-level JSON object that holds two
+The structure of the `.json` file for the entity configuration consists of a top-level JSON object that holds several
 potential fields.
 
 * `entities`
   * An array of registry names of entity types or entity type tags.
 * `slots`
   * An array of `identifier` names for registered slot types.
+* `replace`
+  * A boolean, `true` if the values listed in this file should replace values in lower-priority datapacks
+* `conditions`
+  * An array of `ICondition` implementations that must all pass before these slots are loaded into these entities
 
 All the listed slots will be associated to all the listed entities.
 
