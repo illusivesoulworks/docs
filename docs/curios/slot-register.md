@@ -2,9 +2,9 @@
 sidebar_position: 1
 ---
 
-# Registering Slot Types
+# Registering and Editing Slot Types
 
-A tutorial on how to register slot types that are recognized by Curios.
+A tutorial on how to register and modify slot types that are recognized by Curios.
 
 ## Overview
 ---
