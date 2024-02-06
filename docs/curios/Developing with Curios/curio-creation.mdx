@@ -1,6 +1,8 @@
 ---
 sidebar_position: 2
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Creating a Curio
 
@@ -19,6 +21,8 @@ Only **one** of these methods needs to be implemented for the curio item to work
 
 ## Attaching an `ICurio` capability
 ---
+<Tabs>
+<TabItem value="forge" label="Forge" default>
 This is recommended for mods that are Forge-oriented, due to the use of capabilities, and want to attach the
 capability optionally to their own items or another mod's items.
 
@@ -72,6 +76,48 @@ You will need to pass in the `ItemStack` from the `IForgeItem#initCapabilities` 
 that the implementation receives the correct `ItemStack` for further curios logic. Technically, `ICurio#getStack` can
 return any stack if proxies are needed, but the use-case for that is outside the scope of this documentation.
 :::
+</TabItem>
+<TabItem value="neoforge-2" label="NeoForge 1.20.3+" default>
+This is recommended for mods that are NeoForge-oriented, due to the use of capabilities, and want to attach the
+capability optionally to their own items or another mod's items.
+
+To attach the capability to any item, including vanilla's and other mods', subscribe to the
+`RegisterCapabilitiesEvent` on the mod event bus and use its methods:
+```java
+@Mod("examplemod")
+public class ExampleMod {
+
+    public ExampleMod(IEventBus modEventBus) {
+        modEventBus.addListener(this::registerCapabilities);
+    }
+
+    public void registerCapabilities(final RegisterCapabilitiesEvent evt) {
+        evt.registerItem(
+            CuriosCapability.ITEM,
+            (stack, context) -> new ICurio() {
+
+                @Override
+                public ItemStack getStack() {
+                  return stack;
+                }
+
+                @Override
+                public void curioTick(SlotContext slotContext) {
+                  // ticking logic here
+            },
+            ExampleMod.ITEM);
+    }
+```
+The `ICurio` implementation in the example can be replaced or extended by your own custom implementation.
+
+:::note
+You will need to pass in the `ItemStack` from the `(stack, context)` lambda in the `RegisterCapabilitiesEvent#registerItem`
+method to the return of `ICurio#getStack` as shown in the example. This makes sure that the implementation receives the
+correct `ItemStack` for further curios logic. Technically, `ICurio#getStack` can return any stack if proxies are needed,
+but the use-case for that is outside the scope of this documentation.
+:::
+</TabItem>
+</Tabs>
 
 ## Implementing the `ICurioItem` interface
 ---
@@ -120,7 +166,7 @@ loading:
 ```java
 @Mod("CurioMod")
 public class CurioMod {
-  
+
   public CurioMod() {
     final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
     eventBus.addListener(this::setup);
