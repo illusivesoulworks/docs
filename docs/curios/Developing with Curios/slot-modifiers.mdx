@@ -57,22 +57,32 @@ to 0 so that it does not give any slots by default.
 :::
 
 An example of adding a transient slot modifier:
+
 ```java
 CuriosApi.getCuriosInventory(livingEntity).ifPresent(inventory -> {
-    Map<String, AttributeModifier> map = LinkedHashMultimap.create();
-    map.put("ring", new AttributeModifier(uuid, "name", 2, AttributeModifier.Operation.ADDITION));
-    inventory.addTransientSlotModifiers(map);
-})
+    inventory.addTransientSlotModifier("ring", uuid, "name", 2, AttributeModifier.Operation.ADDITION));
+});
 ```
 This will add 2 slots to the `ring` slot type, with the specified `name` and `uuid` (UUID is not provided so developers
 will need to generate or substitute one). Note that each key for the map must be a valid `SlotType` identifier, such as
 `"ring"` or `"necklace"`.
 
+In the case of adding multiple slot modifiers at once:
+
+```java
+CuriosApi.getCuriosInventory(livingEntity).ifPresent(inventory -> {
+    Map<String, AttributeModifier> map = LinkedHashMultimap.create();
+    map.put("ring", new AttributeModifier(uuid, "name", 2, AttributeModifier.Operation.ADDITION));
+    map.put("necklace", new AttributeModifier(uuid, "name", 1, AttributeModifier.Operation.ADDITION));
+    inventory.addTransientSlotModifiers(map);
+});
+```
+
 If slots need to be **removed**, this is as simple as stating a negative amount for an `AttributeModifier.Operation.ADDITION`
 operation in the `AttributeModifier`:
 
 ```java
-map.put("ring", new AttributeModifier(uuid, "name", -2, AttributeModifier.Operation.ADDITION));
+inventory.addTransientSlotModifier("ring", uuid, "name", -2, AttributeModifier.Operation.ADDITION));
 ```
 Instead of adding 2 slots, this will **remove** 2 slots.
 
@@ -92,6 +102,15 @@ go over [how to assign slots to entities](../entity-register) if slot modifiers 
 Removing slot modifiers can be done through `ICuriosItemHandler#removeSlotModifiers(Multimap<String, AttributeModifier>)`.
 
 This follows very similar logic as the preceding section on adding slot modifiers:
+```java
+CuriosApi.getCuriosInventory(livingEntity).ifPresent(inventory -> {
+    inventory.removeSlotModifier("ring", uuid);
+})
+```
+This will remove the slot modifier with UUID `uuid` from the `ring` slot type.
+
+In the case of removing multiple slot modifiers at once:
+
 ```java
 CuriosApi.getCuriosInventory(livingEntity).ifPresent(inventory -> {
     Map<String, AttributeModifier> map = LinkedHashMultimap.create();
