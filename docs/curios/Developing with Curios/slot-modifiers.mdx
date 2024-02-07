@@ -1,0 +1,103 @@
+---
+sidebar_position: 3
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Slot Modifiers
+
+A tutorial on how to add and remove slots from the curios inventory on entities.
+
+## Overview
+
+Slot modifiers are a way to dynamically add and/or remove slots from entities the same way developers could add and/or
+remove health or attack damage. In fact, it uses the exact same `AttributeModifier` system to accomplish this.
+
+## Getting Started
+
+The main way to interact with and add slot modifiers is through the `top.theillusivec4.curios.api.type.capability.ICuriosItemHandler`
+interface. A developer can grab the specific instance of this on the entity by querying the capability from Curios:
+<Tabs groupId="modloader">
+<TabItem value="forge" label="Forge" default>
+```java
+LazyOptional<ICuriosItemHandler> maybeCuriosInventory = CuriosApi.getCuriosInventory(livingEntity);
+```
+The query returns a `LazyOptional` as the specified entity may not have a curios inventory. If the result is certain to
+exist, then the optionality can be disregarded and simplified to:
+```java
+ICuriosItemHandler curiosInventory = CuriosApi.getCuriosInventory(livingEntity).resolve().get();
+```
+</TabItem>
+<TabItem value="neoforge-2" label="NeoForge 1.20.3+">
+```java
+Optional<ICuriosItemHandler> maybeCuriosInventory = CuriosApi.getCuriosInventory(livingEntity);
+```
+The query returns a `Optional` as the specified entity may not have a curios inventory. If the result is certain to
+exist, then the optionality can be disregarded and simplified to:
+```java
+ICuriosItemHandler curiosInventory = CuriosApi.getCuriosInventory(livingEntity).get();
+```
+</TabItem>
+</Tabs>
+
+## Adding or Removing Slots
+
+Adding slots can be done through `ICuriosItemHandler#addTransientSlotModifiers(Multimap<String, AttributeModifier>)` and
+`ICuriosItemHandler#addPermanentSlotModifiers(Multimap<String, AttributeModifier>)`.
+
+A **transient** slot modifier is a slot modifier that is not serialized to the player data, while a **permanent** slot
+modifier is serialized. The former will disappear upon players relogging into a world and the latter will always remain
+until manually removed. Transient slot modifiers are often used for effects that may not always be present and need to
+be verified at certain times while permanent slot modifiers are often used as rewards or other effects that are not
+meant to be removed often, if ever.
+
+:::tip
+For slot types that should not appear until given by a relevant slot modifier, be sure to set the default amount of slots
+to 0 so that it does not give any slots by default.
+:::
+
+An example of adding a transient slot modifier:
+```java
+CuriosApi.getCuriosInventory(livingEntity).ifPresent(inventory -> {
+    Map<String, AttributeModifier> map = LinkedHashMultimap.create();
+    map.put("ring", new AttributeModifier(uuid, "name", 2, AttributeModifier.Operation.ADDITION));
+    inventory.addTransientSlotModifiers(map);
+})
+```
+This will add 2 slots to the `ring` slot type, with the specified `name` and `uuid` (UUID is not provided so developers
+will need to generate or substitute one). Note that each key for the map must be a valid `SlotType` identifier, such as
+`"ring"` or `"necklace"`.
+
+If slots need to be **removed**, this is as simple as stating a negative amount for an `AttributeModifier.Operation.ADDITION`
+operation in the `AttributeModifier`:
+
+```java
+map.put("ring", new AttributeModifier(uuid, "name", -2, AttributeModifier.Operation.ADDITION));
+```
+Instead of adding 2 slots, this will **remove** 2 slots.
+
+If the total slot amount results in a number less than 0, the slots will remain at 0 but the slot modifiers will remain
+and existing slot modifiers will stack with each other. If a slot modifier removes 2 slots and the base amount is
+already 0, there will seemingly be no effect. However, if another slot modifier adds 3 slots on top of that, it will add
+to the existing -2 and result in a total of 1 slot.
+
+:::caution
+Slot modifiers can only add slots for slot types that are already assigned to entities. If a slot type exists but is not
+assigned to the specified entity, then the slot modifier will not be able to add any slots of that slot type. Be sure to
+go over [how to assign slots to entities](../entity-register) if slot modifiers do not appear to be adding any slots.
+:::
+
+## Removing Slot Modifiers
+
+Removing slot modifiers can be done through `ICuriosItemHandler#removeSlotModifiers(Multimap<String, AttributeModifier>)`.
+
+This follows very similar logic as the preceding section on adding slot modifiers:
+```java
+CuriosApi.getCuriosInventory(livingEntity).ifPresent(inventory -> {
+    Map<String, AttributeModifier> map = LinkedHashMultimap.create();
+    map.put("ring", new AttributeModifier(uuid, "name", 2, AttributeModifier.Operation.ADDITION));
+    inventory.removeSlotModifiers(map);
+})
+```
+The `AttributeModifier` used is mostly filler, the amount and operation do not matter. The key and the `uuid`, however,
+must match the ones used for the slot modifier being removed.
