@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Registering and Editing Slot Types
+# Slot Types
 
 A tutorial on how to register and modify slot types that are recognized by Curios.
 
@@ -19,7 +19,7 @@ needed datapack registration.
 **Why are my registered slot types not appearing?**
 
 Registering slot types makes them available for use; however, they are _not_ added to any entities (including players)
-by default. In order to add them to an entity, please refer to [the next step](./entity-register.md) on adding slot
+by default. In order to add them to an entity, please refer to [the next step](entity-register.md) on adding slot
 types to entities.
 :::
 

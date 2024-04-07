@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 13
 ---
 
 # Data Generation
@@ -67,7 +67,7 @@ public void generate(HolderLookup.Provider registries, ExistingFileHelper fileHe
 
 Additional parameters can be added by calling methods on the `ISlotData` returned by the `createSlot` method call. Most
 of these parameters are linked to fields for `ISlotType`, more information on how these fields are constructed and what
-they represent can be found on the page for [slot registration](../slot-register.md#-syntax).
+they represent can be found on the page for [slot registration](slot-register.md#-syntax).
 
 | Method         | Parameters         | Field            |
 |----------------|--------------------|------------------|
@@ -111,7 +111,7 @@ public void generate(HolderLookup.Provider registries, ExistingFileHelper fileHe
 ```
 Additional parameters can be added by calling methods on the `IEntitiesData` returned by the `createEntities` method
 call. All of these parameters correspond to JSON fields, more information on these can be found on the page for
-[entity registration](../entity-register.md#-syntax).
+[entity registration](entity-register.md#-syntax).
 
 | Method         | Parameters        | Field        | Notes                                                      |
 |----------------|-------------------|--------------|------------------------------------------------------------|

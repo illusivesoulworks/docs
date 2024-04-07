@@ -1,5 +1,5 @@
 ---
-sidebar_position: 11
+sidebar_position: 17
 ---
 
 # Example Datapack
@@ -9,7 +9,7 @@ existing slot types.
 
 ## Getting Started
 
-First, download the [example datapack](../assets/curios_example.zip).
+First, download the [example datapack](../../assets/curios_example.zip).
 
 Unzip the file and there will be the following folder structure:
 

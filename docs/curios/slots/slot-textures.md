@@ -1,8 +1,8 @@
 ---
-sidebar_position: 5
+sidebar_position: 9
 ---
 
-# Adding Custom Slot Textures
+# Slot Icon Textures
 
 A tutorial on how to add custom slot textures to slot types.
 

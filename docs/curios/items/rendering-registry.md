@@ -12,9 +12,8 @@ In the `top.theillusivec4.curios.api.client` package, you'll find an interface c
 needs to be implemented on an object of your choice, as its `render` method is what will be called to run your rendering
 code later.
 
-For the full guide on the interface, see [here](APIs/renderer-interface.md).
+For the full guide on the interface, see [here](../api/renderer-interface.md).
 
-### Example
 ```java
 public class MyCurioRenderer implements ICurioRenderer {
   
@@ -41,7 +40,6 @@ Once you have an implementation of `ICurioRenderer`, you need to register an ins
 by calling the `register` method in `top.theillusivec4.curios.api.client.CuriosRendererRegistry` during the
 `FMLClientSetupEvent` in mod loading.
 
-### Example
 ```java
 @Mod("CurioMod")
 public class CurioMod {

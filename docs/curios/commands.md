@@ -49,7 +49,7 @@ All the commands begin with `curios` and have the following options:
   * Specifies the index within the slot type.
   * Must be a whole number greater than or equal to 0.
 
-* `<slotId>`: [slot_identifier](slot-register)
+* `<slotId>`: [slot_identifier](slots/slot-register.md)
   * Specifies a slot type.
   * Must be an identifier of a registered slot type.
 

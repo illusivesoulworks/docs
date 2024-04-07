@@ -1,5 +1,5 @@
 ---
-sidebar_position: 10
+sidebar_position: 5
 ---
 
 # Preset Slot Types
@@ -15,8 +15,8 @@ list of slot types that are commonly used in the modded community and should be 
 types when applicable.
 
 :::note
-Although these slot types are provided by Curios, they are not active by default. A developer or user will still need to
-take the proper steps to register the slot type(s) that they want in order to add them to the game.
+Although these slot types are provided by Curios, they are not added to any entities by default. This needs to be done
+by the developer or user by [adding slot types to entities](entity-register.md).
 :::
 
 ## Slot Types

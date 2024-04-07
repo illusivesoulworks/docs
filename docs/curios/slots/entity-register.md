@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Adding Slot Types to Entities
+# Entity Slot Types
 
 A tutorial on how to add registered slot types to entities.
 
@@ -12,7 +12,7 @@ Beginning in 1.20, the recommended way to add a registered slot type to an entit
 unfamiliar with datapacks, it is recommended to read through the [wiki page](https://minecraft.fandom.com/wiki/Data_pack)
 in order to understand the concept and structure before proceeding to the rest of this page.
 
-[Registered slot types](./slot-register.md) will all be available for use but will not appear in-game until they are
+[Registered slot types](slot-register.md) will all be available for use but will not appear in-game until they are
 added to one or more entities.
 
 ## Directory
@@ -45,7 +45,7 @@ All the listed slots will be associated to all the listed entities.
 
 :::caution
 Adding multiple of the same `identifier` to the `slots` array will **not** add multiple slots. Each entry in the `slots`
-array represents a [registered slot type](./slot-register.md) and the entries do not stack, please refer to that page in
+array represents a [registered slot type](slot-register.md) and the entries do not stack, please refer to that page in
 order to change slot type behavior including default size.
 :::
 
