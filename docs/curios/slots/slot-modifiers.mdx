@@ -73,7 +73,7 @@ to the existing -2 and result in a total of 1 slot.
 :::caution
 Slot modifiers can only add slots for slot types that are already assigned to entities. If a slot type exists but is not
 assigned to the specified entity, then the slot modifier will not be able to add any slots of that slot type. Be sure to
-go over [how to assign slots to entities](../entity-register) if slot modifiers do not appear to be adding any slots.
+go over [how to assign slots to entities](./entity-register) if slot modifiers do not appear to be adding any slots.
 :::
 
 ## Removing Slot Modifiers
@@ -111,7 +111,7 @@ removed when unequipped.
 Both the `ICurio` and `ICurioItem` interfaces expose a method called `getAttributeModifiers` that returns a
 `Multimap<Attribute, AttributeModifier>` denoting attributes and their modifiers, in the same way that items themselves
 have a similar method when equipped in vanilla slots. For more information on attaching these interfaces to items, see
-the [curio creation page](./curio-creation).
+the [curio creation page](../items/curio-creation).
 
 <Tabs groupId="curiointerface">
 <TabItem value="curio" label="ICurio" default>
