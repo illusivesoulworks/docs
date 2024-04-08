@@ -8,12 +8,16 @@ A tutorial on how to add registered slot types to entities.
 
 ## Overview
 ---
-Beginning in 1.20, the recommended way to add a registered slot type to an entity is through a datapack. If you are
-unfamiliar with datapacks, it is recommended to read through the [wiki page](https://minecraft.fandom.com/wiki/Data_pack)
-in order to understand the concept and structure before proceeding to the rest of this page.
+The recommended way to add a registered slot type to an entity is through a datapack. If you are unfamiliar with
+datapacks, it is recommended to read through the [wiki page](https://minecraft.fandom.com/wiki/Data_pack) in order to
+understand the concept and structure before proceeding to the rest of this page.
 
 [Registered slot types](slot-register.md) will all be available for use but will not appear in-game until they are
 added to one or more entities.
+
+Alternatively, users can instead choose to use the [Curios configuration](../configuration#slot-configuration) to create
+and assign slot types to **players only**. There are fewer features than those offered in the datapack method, but some
+users may find the process to be more straightforward.
 
 ## Directory
 ---
@@ -32,14 +36,23 @@ anything that is lowercased with no special characters.
 The structure of the `.json` file for the entity configuration consists of a top-level JSON object that holds several
 potential fields.
 
-* `entities`
-  * An array of registry names of entity types or entity type tags.
-* `slots`
-  * An array of `identifier` names for registered slot types.
-* `replace`
-  * A boolean, `true` if the values listed in this file should replace values in lower-priority datapacks
-* `conditions`
-  * An array of `ICondition` implementations that must all pass before these slots are loaded into these entities
+All fields are optional unless otherwise noted.
+
+### **replace** (boolean)
+When `true`, replaces data from lower-priority datapacks.
+* **default:** `false`
+
+### **entities** (string[])
+An array of registry names of entity types or entity type tags.
+* **default:** `[]`
+
+### **slots** (string[])
+An array of `identifier` names for registered slot types.
+* **default:** `[]`
+
+### **conditions** (string[])
+An array of `ICondition` implementations that must all pass before these slots are loaded into these entities.
+* **default:** `[]`
 
 All the listed slots will be associated to all the listed entities.
 

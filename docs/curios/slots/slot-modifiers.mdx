@@ -16,29 +16,8 @@ remove health or attack damage. In fact, it uses the exact same `AttributeModifi
 ## Getting Started
 
 The main way to interact with and add slot modifiers is through the `top.theillusivec4.curios.api.type.capability.ICuriosItemHandler`
-interface. A developer can grab the specific instance of this on the entity by querying the capability from Curios:
-<Tabs groupId="modloader">
-<TabItem value="forge" label="Forge" default>
-```java
-LazyOptional<ICuriosItemHandler> maybeCuriosInventory = CuriosApi.getCuriosInventory(livingEntity);
-```
-The query returns a `LazyOptional` as the specified entity may not have a curios inventory. If the result is certain to
-exist, then the optionality can be disregarded and simplified to:
-```java
-ICuriosItemHandler curiosInventory = CuriosApi.getCuriosInventory(livingEntity).resolve().get();
-```
-</TabItem>
-<TabItem value="neoforge-2" label="NeoForge 1.20.3+">
-```java
-Optional<ICuriosItemHandler> maybeCuriosInventory = CuriosApi.getCuriosInventory(livingEntity);
-```
-The query returns a `Optional` as the specified entity may not have a curios inventory. If the result is certain to
-exist, then the optionality can be disregarded and simplified to:
-```java
-ICuriosItemHandler curiosInventory = CuriosApi.getCuriosInventory(livingEntity).get();
-```
-</TabItem>
-</Tabs>
+interface. A developer can grab the specific instance of this on the entity by following the steps from the [inventory](../inventory/basic-inventory.mdx)
+guide to query the capability from Curios.
 
 ## Adding or Removing Slots
 
