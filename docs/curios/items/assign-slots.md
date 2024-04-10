@@ -86,7 +86,7 @@ In order to register a predicate and use a custom validator, developers will nee
 ```java
 CuriosApi.registerPredicate(new ResourceLocation("examplemod", "my_predicate"), (slotResult) -> {
   // contents of the predicate here - return true or false    
-})
+});
 ```
 
 This can be registered anywhere, but should be done before server loading as that's when the data is needed.
