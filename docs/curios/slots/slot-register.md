@@ -95,7 +95,8 @@ Whether to drop, keep, destroy, or follow the `keepCurios` configuration setting
 * **merging:** N/A
 
 ### **validators** (string[])
-The list of registered predicates from the Curios API used by this slot type to validate item insertions.
+The list of registered predicates from the Curios API used by this slot type to validate item insertions. For more
+information about validators, please see the page on [slot assignments](../items/assign-slots#validators).
 * **default:** `["curios:tag"]`
 * **merging:** Each entry is added into the final array.
 
