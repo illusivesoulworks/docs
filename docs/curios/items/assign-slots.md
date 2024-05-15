@@ -63,6 +63,24 @@ will be tagged:
 Now all diamonds and all emeralds should have a tooltip that reads `Slot: Ring`, which indicates that they can now go
 into the `ring` slot type if available.
 
+### Removing Values
+
+Items can also be removed from item tags instead of added. This is useful for situations where it is necessary to move
+an item from one slot type to another and the original slot type should no longer accept the item. In this case,
+there is a `remove` field that can be used to list an array of items that should be removed from the slot type.
+
+```json
+{
+  "replace": false,
+  "values": [],
+  "remove": ["minecraft:diamond"]
+}
+```
+
+In the example above, diamonds will be removed from the slot type associated with the item tag and no longer be
+considered valid for equipping into that slot type (provided that the slot type itself is using the default behavior of
+validating based on item tags).
+
 ## Validators
 ---
 For more precise slot type assignments, validators can be used instead. Validators exist as a field on each slot type
