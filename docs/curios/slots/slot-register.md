@@ -138,6 +138,26 @@ create a `ring.json` slot registration file in the datapack with the contents:
   "size": 2
 }
 ```
-This will merge the size data of this registration with the existing registration provided by Curios, keeping all of the
+This will merge the size data of this registration with the existing registration provided by Curios, keeping all the
 other data intact while increasing the number of slots to 2.
+
+## Localization
+---
+By default, slot types do not come with localizations for the slot name. Only [Preset Slot Types](preset-slots.md) come
+with native localizations, provided by Curios itself. For other slot types, a resource pack with a language file will
+be necessary in order to properly localize the slot name. If you are unfamiliar with resource packs, it is recommended
+to read through the [wiki page](https://minecraft.wiki/w/Resource_pack) in order to understand the concept and
+structure.
+
+The localization key for slot types follow the format `curios.identifier.name` with `name` being the `identifier`
+registered for the slot type. For example, the `ring` slot's localization key would be `curios.identifier.ring`.
+
+### Example
+To localize a slot type with the identifier `custom` to the `en_us` localization, a `assets/(namespace)/lang` folder
+needs to be created in the resource pack with a `en_us.json` inside with the contents:
+```json
+{
+  "curios.identifier.custom": "Custom Slot"
+}
+```
   
