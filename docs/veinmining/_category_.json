@@ -1,0 +1,8 @@
+{
+  "label": "Vein Mining",
+  "position": 10,
+  "link": {
+    "type": "generated-index",
+    "description": "A lightweight, highly configurable Vein Mining enchantment for tools."
+  }
+}
