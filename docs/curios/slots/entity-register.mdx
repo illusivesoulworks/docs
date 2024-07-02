@@ -1,6 +1,8 @@
 ---
 sidebar_position: 3
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Entity Slot Types
 
@@ -50,9 +52,18 @@ An array of registry names of entity types or entity type tags.
 An array of `identifier` names for registered slot types.
 * **default:** `[]`
 
-### **conditions** (string[])
+<Tabs groupId="modloader">
+<TabItem value="forge" label="Forge" default>
+<h2> **conditions** (string[]) </h2>
 An array of `ICondition` implementations that must all pass before these slots are loaded into these entities.
 * **default:** `[]`
+</TabItem>
+<TabItem value="neoforge-2" label="NeoForge 1.20.2+">
+<h2> **neoforge:conditions** (string[]) </h2>
+An array of `ICondition` implementations that must all pass before these slots are loaded into these entities.
+* **default:** `[]`
+</TabItem>
+</Tabs>
 
 All the listed slots will be associated to all the listed entities.
 
