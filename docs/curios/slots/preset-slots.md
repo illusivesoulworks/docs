@@ -16,7 +16,7 @@ types when applicable.
 
 :::note
 Although these slot types are provided by Curios, they are not added to any entities by default. This needs to be done
-by the developer or user by [adding slot types to entities](entity-register.md).
+by the developer or user by [adding slot types to entities](entity-register.mdx).
 :::
 
 ## Slot Types

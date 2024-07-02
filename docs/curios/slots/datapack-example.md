@@ -110,7 +110,7 @@ The file specifies these properties:
 datapack, as denoted by the `"slots"` list
 * The entities being given slots are all players and armor stands, as denoted by the `"entities"` list
 
-For more information on the fields and customization of entity slots, please refer to [the entity slots page](entity-register.md).
+For more information on the fields and customization of entity slots, please refer to [the entity slots page](entity-register.mdx).
 
 ## Adding an Item to a Curio Slot
 

@@ -111,7 +111,7 @@ public void generate(HolderLookup.Provider registries, ExistingFileHelper fileHe
 ```
 Additional parameters can be added by calling methods on the `IEntitiesData` returned by the `createEntities` method
 call. All of these parameters correspond to JSON fields, more information on these can be found on the page for
-[entity registration](entity-register.md#-syntax).
+[entity registration](entity-register.mdx#-syntax).
 
 | Method         | Parameters        | Field        | Notes                                                      |
 |----------------|-------------------|--------------|------------------------------------------------------------|
