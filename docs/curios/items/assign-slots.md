@@ -33,12 +33,12 @@ before proceeding to the rest of this page.
 
 ### Example
 
-Inside the datapack, there should be a path of folders that looks like `data/curios/tags/items`. At the end of this,
-inside the `items` folder, is where the item tag data file should go. The name of the file should be the same as the
+Inside the datapack, there should be a path of folders that looks like `data/curios/tags/item`. At the end of this,
+inside the `item` folder, is where the item tag data file should go. The name of the file should be the same as the
 name of the identifier of the slot type that the item(s) should go in and the format should be `.json`. For this
 example, the `ring` slot type will be used.
 
-The path should now look like `data/curios/tags/items/ring.json`. The inside of the `ring.json` file should look like:
+The path should now look like `data/curios/tags/item/ring.json`. The inside of the `ring.json` file should look like:
 ```json
 {
   "replace": false,
