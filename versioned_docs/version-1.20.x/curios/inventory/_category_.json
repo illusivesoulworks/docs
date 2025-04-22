@@ -1,0 +1,8 @@
+{
+  "label": "Inventory",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "All about the curio inventory and how to manage it."
+  }
+}

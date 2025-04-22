@@ -1,0 +1,8 @@
+{
+  "label": "Curios",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "A Minecraft mod introducing a flexible and expandable accessory/equipment API for users and developers."
+  }
+}

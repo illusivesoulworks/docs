@@ -1,0 +1,188 @@
+---
+sidebar_position: 2
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Creating a Curio
+
+A tutorial on how to attach curio capabilities to your items.
+
+## Overview
+---
+Curios comes with interfaces that you can attach to your items in order to define certain behaviors for those items when
+interacting with curios slots. This includes events such as ticking while in a curio slot or triggering certain actions
+when equipped or unequipped into a curio slot.
+
+There are three main ways to implement the capability on your item: directly attaching an `ICurio` implementation as a
+capability, extending the `ICurioItem` interface on your item, or registering an `ICurioItem` implementation to an item.
+
+Only **one** of these methods needs to be implemented for the curio item to work.
+
+## Attaching an `ICurio` capability
+---
+<Tabs groupId="modloader">
+<TabItem value="forge" label="Forge" default>
+This is recommended for mods that are Forge-oriented, due to the use of capabilities, and want to attach the
+capability optionally to their own items or another mod's items.
+
+To attach the capability to your own items, override the `IForgeItem#initCapabilities` method:
+```java
+@Override
+public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag unused) {
+    return CuriosApi.createCurioProvider(new ICurio() {
+    
+        @Override
+        public ItemStack getStack() {
+          return stack;
+        }
+
+        @Override
+        public void curioTick(SlotContext slotContext) {
+          // ticking logic here
+        }
+    });
+}
+```
+The `ICurio` implementation in the example can be replaced or extended by your own custom implementation. The
+implementation can also exist in a separate class altogether as long as the instantiation is still done in the
+`IForgeItem#initCapabilities` method.
+
+To attach the capability to any item, including vanilla's and other mods', subscribe to the
+`AttachCapabilitiesEvent<ItemStack>` and use its methods:
+```java
+@SubscribeEvent
+public void attachCapabilities(AttachCapabilitiesEvent<ItemStack> evt) {
+    ItemStack stack = evt.getObject();
+    Item item = stack.getItem();
+    evt.addCapability(CuriosCapability.ID_ITEM, CuriosApi.createCurioProvider(new ICurio() {
+    
+        @Override
+        public ItemStack getStack() {
+          return stack;
+        }
+        
+        @Override
+        public void curioTick(SlotContext slotContext) {
+          // ticking logic here
+        }
+    }));
+}
+```
+
+:::note
+You will need to pass in the `ItemStack` from the `IForgeItem#initCapabilities` argument or the
+`AttachCapabilitiesEvent#getObject` result to the return of `ICurio#getStack` as shown in the example. This makes sure
+that the implementation receives the correct `ItemStack` for further curios logic. Technically, `ICurio#getStack` can
+return any stack if proxies are needed, but the use-case for that is outside the scope of this documentation.
+:::
+</TabItem>
+<TabItem value="neoforge-2" label="NeoForge 1.20.3+" default>
+This is recommended for mods that are NeoForge-oriented, due to the use of capabilities, and want to attach the
+capability optionally to their own items or another mod's items.
+
+To attach the capability to any item, including vanilla's and other mods', subscribe to the
+`RegisterCapabilitiesEvent` on the mod event bus and use its methods:
+```java
+@Mod("examplemod")
+public class ExampleMod {
+
+    public ExampleMod(IEventBus modEventBus) {
+        modEventBus.addListener(this::registerCapabilities);
+    }
+
+    public void registerCapabilities(final RegisterCapabilitiesEvent evt) {
+        evt.registerItem(
+            CuriosCapability.ITEM,
+            (stack, context) -> new ICurio() {
+
+                @Override
+                public ItemStack getStack() {
+                  return stack;
+                }
+
+                @Override
+                public void curioTick(SlotContext slotContext) {
+                  // ticking logic here
+            },
+            ExampleMod.ITEM);
+    }
+```
+The `ICurio` implementation in the example can be replaced or extended by your own custom implementation.
+
+:::note
+You will need to pass in the `ItemStack` from the `(stack, context)` lambda in the `RegisterCapabilitiesEvent#registerItem`
+method to the return of `ICurio#getStack` as shown in the example. This makes sure that the implementation receives the
+correct `ItemStack` for further curios logic. Technically, `ICurio#getStack` can return any stack if proxies are needed,
+but the use-case for that is outside the scope of this documentation.
+:::
+</TabItem>
+</Tabs>
+
+## Implementing the `ICurioItem` interface
+---
+This is recommended for mods that want the simplest and most straightforward method, do not mind having Curios as a
+required dependency, and are only working with their own items.
+
+To implement the `ICurioItem` interface, simply implement it on your item class:
+```java
+public class CurioItem extends Item implements ICurioItem {
+
+  public CurioItem() {
+    super(new Item.Properties().stacksTo(1).defaultDurability(0));
+  }
+
+  @Override
+  public void curioTick(SlotContext slotContext, ItemStack stack) {
+    // ticking logic here
+  }
+}
+```
+
+## Registering an `ICurioItem` implementation
+---
+This is recommended for multi-loader mods as a platform-agnostic method of registering Curios behavior to their own
+items or another mod's items that can be loaded optionally.
+
+To register an `ICurioItem` implementation, first create the implementation:
+```java
+public class CurioItem implements ICurioItem {
+
+  @Override
+  public void curioTick(SlotContext slotContext, ItemStack stack) {
+    // ticking logic here
+  }
+}
+```
+
+And then register it by using `CurioApi#registerCurio`:
+```java
+CuriosApi.registerCurio(CurioModItems.MY_ITEM, new CurioItem());
+```
+
+Registration can occur at any time, but for simplicity can be called during the `FMLCommonSetupEvent` phase during mod
+loading:
+
+```java
+@Mod("CurioMod")
+public class CurioMod {
+
+  public CurioMod() {
+    final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    eventBus.addListener(this::setup);
+  }
+
+  private void setup(final FMLCommonSetupEvent evt) {
+    CuriosApi.registerCurio(CurioModItems.MY_ITEM, new CurioItem());
+  }
+}
+```
+
+## Priority
+---
+In situations where multiple implementations are registered to the same item, there a few things to take note of:
+* Only one implementation will be used on any one item, any other implementations found will be ignored.
+* `ICurio` capabilities initialized through `IForgeItem#initCapabilities` will always be prioritized and other
+implementations will be ignored.
+* `ICurioItem` implementations registered through `CuriosApi#registerCurio` will be prioritized over `ICurioItem`
+implementations directly on the item class.
