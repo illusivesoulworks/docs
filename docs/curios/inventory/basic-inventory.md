@@ -22,19 +22,6 @@ which holds all of the methods that developers can use to access and manage the 
 ---
 To begin using the inventory, developers will need to grab the instance associated with each entity. The
 `top.theillusivec4.curios.api.CuriosApi` class has a `getCuriosInventory` method that can be used:
-
-<Tabs groupId="modloader">
-<TabItem value="forge" label="Forge" default>
-```java
-LazyOptional<ICuriosItemHandler> maybeCuriosInventory = CuriosApi.getCuriosInventory(livingEntity);
-```
-The query returns a `LazyOptional` as the specified entity may not have a curios inventory. If the result is certain to
-exist, then the optionality can be disregarded and simplified to:
-```java
-ICuriosItemHandler curiosInventory = CuriosApi.getCuriosInventory(livingEntity).resolve().get();
-```
-</TabItem>
-<TabItem value="neoforge-2" label="NeoForge 1.20.3+">
 ```java
 Optional<ICuriosItemHandler> maybeCuriosInventory = CuriosApi.getCuriosInventory(livingEntity);
 ```
@@ -43,8 +30,6 @@ exist, then the optionality can be disregarded and simplified to:
 ```java
 ICuriosItemHandler curiosInventory = CuriosApi.getCuriosInventory(livingEntity).get();
 ```
-</TabItem>
-</Tabs>
 
 Since the method returns an `Optional` by default, developers will need to make sure to use `Optional#ifPresent` first
 in order to check that the inventory actually exists:

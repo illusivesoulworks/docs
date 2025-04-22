@@ -29,9 +29,9 @@ Secondly, add the Curios API dependencies to your build script's `dependencies` 
 ```gradle
 dependencies {
     // Compile against only the API artifact
-    compileOnly(fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api"))
+    compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}:api"
     // Use the full Curios API jar at runtime
-    runtimeOnly(fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}"))
+    runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
 }
 ```
 
@@ -46,26 +46,6 @@ during compile time. Including the full jar at runtime still means that testing 
 If there is an internal package and or method you would like to use, please make a suggestion on the [issue tracker](https://github.com/TheIllusiveC4/Curios/issues)
 so that it may potentially be included in the public API.
 :::
-
-### Configure runs for mixin
-
-Finally, since Curios uses mixins, your run configurations will need to ensure that the remapping functions correctly:
-
-```gradle
-property 'mixin.env.remapRefMap', 'true'
-property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-```
-
-Add the above code block into each of the run configurations that you plan on using, for example:
-
-```gradle
-runs {
-    client {
-        property 'mixin.env.remapRefMap', 'true'
-        property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-    }
-}
-```
 
 Remember to regenerate the run configurations after changing the settings.
 

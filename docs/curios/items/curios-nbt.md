@@ -20,16 +20,16 @@ differences in Curios.
 ---
 This is the vanilla way of adding an attribute modifier to the chest slot in an item's NBT:
 ```
-/give @s netherite_chestplate{AttributeModifiers:[{Slot:"chest", AttributeName:"generic.attack_damage", Name:"generic.attack_damage", Amount:20.0, Operation:0, UUID:[I; 42853, 1689024593, -201178, -1559272105]}]} 1
+/give @s netherite_sword[minecraft:attribute_modifiers=[{type:"generic.attack_damage", amount:20.0, operation:"add_value", id:"example:custom_damage", slot:"mainhand"}]] 1
 ```
 
 This is the Curios way of achieving the same in the `body` slot:
 ```
-/give @s netherite_chestplate{CurioAttributeModifiers:[{Slot:"body", AttributeName:"generic.attack_damage", Name:"generic.attack_damage", Amount:20.0, Operation:0}]} 1
+/give @s netherite_chestplate[curios:attribute_modifiers=[{type:"generic.attack_damage", amount:20.0, operation:"add_value", id:"example:custom_damage", slot:"body"}]]
 ```
 
-Note that the main differences are the change from `AttributeModifiers` to `CurioAttributeModifiers` and the change in
-the slot name. The slot name should be the `identifier` of a registered slot type.
+Note that the main differences are the change from `minecraft:attribute_modifiers` to `curios:attribute_modifiers` and
+the change in the slot name. The slot name should be the `identifier` of a registered slot type.
 
 ### Slot Modifiers
 
@@ -40,11 +40,5 @@ being the slot identifier that is being added or removed.
 Going back to the previous example, this will make the item add 1 `back` slot when worn in the `body` slot:
 
 ```
-/give @s netherite_chestplate{CurioAttributeModifiers:[{Slot:"body", AttributeName:"curios:back", Name:"back_modifier", Amount:1.0, Operation:0}]} 1
+/give @s netherite_chestplate[curios:attribute_modifiers=[{type:"slot:back", amount:1.0, operation:"add_value", id:"example:custom_damage", slot:"body"}]]
 ```
-
-:::tip
-It is recommended that the UUID be left out except for special circumstances. When absent, Curios will give the attribute
-modifier a UUID based on the slot context which will prevent any stacking issues that could arise when multiple slots
-of the same type exist and the same attribute modifier is applied multiple times.
-:::

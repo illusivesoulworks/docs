@@ -17,7 +17,7 @@ Unzip the file and there will be the following folder structure:
 |data
 --|curios
   --|tags
-    --|items
+    --|item
       --|ring.json
 --|curios_example
   --|curios
@@ -115,7 +115,7 @@ For more information on the fields and customization of entity slots, please ref
 ## Adding an Item to a Curio Slot
 
 Items are added to slot types by adding them to the relevant item tag. In the example datapack, an item tag for the
-`ring` slot type is created at `data/curios/tags/items/ring.json`:
+`ring` slot type is created at `data/curios/tags/item/ring.json`:
 
 ```json
 {

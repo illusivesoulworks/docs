@@ -9,8 +9,8 @@ A tutorial on how to programmatically generate the Curios data files.
 ## Prerequisites
 ---
 The documentation on this page was written with the assumption that readers are already familiar with basic data
-generation and its usages. If you are not, please prime yourself by learning about data generation on either [Forge](https://forge.gemwire.uk/wiki/Datageneration)
-or [NeoForge](https://docs.neoforged.net/docs/datagen/) before proceeding further.
+generation and its usages. If you are not, please prime yourself by learning about data generation on
+[NeoForge](https://docs.neoforged.net/docs/resources/#data-generation) before proceeding further.
 
 ## Getting Started
 ---

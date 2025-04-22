@@ -39,20 +39,20 @@ An example of adding a transient slot modifier:
 
 ```java
 CuriosApi.getCuriosInventory(livingEntity).ifPresent(inventory -> {
-    inventory.addTransientSlotModifier("ring", uuid, "name", 2, AttributeModifier.Operation.ADDITION));
+    inventory.addTransientSlotModifier("ring", resourceLocation, "name", 2, AttributeModifier.Operation.ADDITION));
 });
 ```
-This will add 2 slots to the `ring` slot type, with the specified `name` and `uuid` (UUID is not provided so developers
-will need to generate or substitute one). Note that each key for the map must be a valid `SlotType` identifier, such as
-`"ring"` or `"necklace"`.
+This will add 2 slots to the `ring` slot type, with the specified `name` and `resourceLocation`. The `ResourceLocation`
+is determined by the implementing mod and should be unique enough to avoid potential collisions with other slot modifiers.
+Note that each key for the map must be a valid `SlotType` identifier, such as `"ring"` or `"necklace"`.
 
 In the case of adding multiple slot modifiers at once:
 
 ```java
 CuriosApi.getCuriosInventory(livingEntity).ifPresent(inventory -> {
     Map<String, AttributeModifier> map = LinkedHashMultimap.create();
-    map.put("ring", new AttributeModifier(uuid, "name", 2, AttributeModifier.Operation.ADDITION));
-    map.put("necklace", new AttributeModifier(uuid, "name", 1, AttributeModifier.Operation.ADDITION));
+    map.put("ring", new AttributeModifier(resourceLocation, "name", 2, AttributeModifier.Operation.ADDITION));
+    map.put("necklace", new AttributeModifier(resourceLocation, "name", 1, AttributeModifier.Operation.ADDITION));
     inventory.addTransientSlotModifiers(map);
 });
 ```
@@ -61,7 +61,7 @@ If slots need to be **removed**, this is as simple as stating a negative amount 
 operation in the `AttributeModifier`:
 
 ```java
-inventory.addTransientSlotModifier("ring", uuid, "name", -2, AttributeModifier.Operation.ADDITION));
+inventory.addTransientSlotModifier("ring", resourceLocation, "name", -2, AttributeModifier.Operation.ADDITION));
 ```
 Instead of adding 2 slots, this will **remove** 2 slots.
 
@@ -83,17 +83,17 @@ Removing slot modifiers can be done through `ICuriosItemHandler#removeSlotModifi
 This follows very similar logic as the preceding section on adding slot modifiers:
 ```java
 CuriosApi.getCuriosInventory(livingEntity).ifPresent(inventory -> {
-    inventory.removeSlotModifier("ring", uuid);
+    inventory.removeSlotModifier("ring", resourceLocation);
 })
 ```
-This will remove the slot modifier with UUID `uuid` from the `ring` slot type.
+This will remove the slot modifier with ResourceLocation `resourceLocation` from the `ring` slot type.
 
 In the case of removing multiple slot modifiers at once:
 
 ```java
 CuriosApi.getCuriosInventory(livingEntity).ifPresent(inventory -> {
     Map<String, AttributeModifier> map = LinkedHashMultimap.create();
-    map.put("ring", new AttributeModifier(uuid, "name", 2, AttributeModifier.Operation.ADDITION));
+    map.put("ring", new AttributeModifier(resourceLocation, "name", 2, AttributeModifier.Operation.ADDITION));
     inventory.removeSlotModifiers(map);
 })
 ```
@@ -117,7 +117,7 @@ the [curio creation page](../items/curio-creation).
 <TabItem value="curio" label="ICurio" default>
 ```java
 @Override
-public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid) {
+public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, ResourceLocation resourceLocation) {
     Multimap<Attribute, AttributeModifier> map = LinkedHashMultimap.create();
     // Add attribute modifiers
     return map;
@@ -127,7 +127,7 @@ public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext 
 <TabItem value="curioitem" label="ICurioItem" default>
 ```java
 @Override
-public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
+public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, ResourceLocation resourceLocation, ItemStack stack) {
     Multimap<Attribute, AttributeModifier> map = LinkedHashMultimap.create();
     // Add attribute modifiers
     return map;
@@ -137,15 +137,15 @@ public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext 
 </Tabs>
 
 In order to add **slot** modifiers specifically, developers can leverage the
-`CuriosApi#addSlotModifier(Multimap, String, UUID, double, AttributeModifier.Operation)` method:
+`CuriosApi#addSlotModifier(Multimap, String, ResourceLocation, double, AttributeModifier.Operation)` method:
 
 <Tabs groupId="curiointerface">
 <TabItem value="curio" label="ICurio" default>
 ```java
 @Override
-public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid) {
+public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, ResourceLocation resourceLocation) {
     Multimap<Attribute, AttributeModifier> map = LinkedHashMultimap.create();
-    CuriosApi.addSlotModifier(map, "ring", uuid, 2, AttributeModifier.Operation.ADDITION);
+    CuriosApi.addSlotModifier(map, "ring", resourceLocation, 2, AttributeModifier.Operation.ADDITION);
     return map;
 }
 ```
@@ -153,23 +153,24 @@ public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext 
 <TabItem value="curioitem" label="ICurioItem" default>
 ```java
 @Override
-public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, UUID uuid, ItemStack stack) {
+public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext, ResourceLocation resourceLocation, ItemStack stack) {
     Multimap<Attribute, AttributeModifier> map = LinkedHashMultimap.create();
-    CuriosApi.addSlotModifier(map, "ring", uuid, 2, AttributeModifier.Operation.ADDITION);
+    CuriosApi.addSlotModifier(map, "ring", resourceLocation, 2, AttributeModifier.Operation.ADDITION);
     return map;
 }
 ```
 </TabItem>
 </Tabs>
 
-This will add 2 slots of the `ring` slot type using the passed in `uuid` from the second parameter of the method. The
-slots will only be added when this item is equipped and those slots will be removed when this item is unequipped.
+This will add 2 slots of the `ring` slot type using the passed in `resourceLocation` from the second parameter of the
+method. The slots will only be added when this item is equipped and those slots will be removed when this item is
+unequipped.
 
 :::caution
-Although the `uuid` in the preceding section can be decided on a case-by-case basis, the `uuid` in this section related
-to items is **strongly encouraged** to be fed from the second parameter of the `getAttributeModifiers` method. This is
-because the UUID in the parameter is guaranteed to be slot-specific, which avoids any collision issues in case multiple
-instances of the same item are equipped.
+Although the `resourceLocation` in the preceding section can be decided on a case-by-case basis, the `resourceLocation`
+in this section related to items is **strongly encouraged** to be fed from the second parameter of the `getAttributeModifiers`
+method. This is because the ResourceLocation in the parameter is guaranteed to be slot-specific, which avoids any
+collision issues in case multiple instances of the same item are equipped.
 :::
 
 ### NBT Tag
@@ -178,17 +179,11 @@ The previous method works for items that developers can directly register or imp
 but this can fall short if developers want to add these modifiers dynamically or even override previously registered
 behavior.
 
-As an alternative, developers can directly add slot modifiers to item NBT tags as well using `CuriosApi#addSlotModifier(ItemStack, String, String, UUID, double, AttributeModifier.Operation, String)`:
+As an alternative, developers can directly add slot modifiers to item NBT tags as well using `CuriosApi#addSlotModifier(ItemStack, String, String, ResourceLocation, double, AttributeModifier.Operation, String)`:
 
 ```java
-CuriosApi.addSlotModifier(stack, "ring", "name", uuid, 2, AttributeModifier.Operation.ADDITION, "necklace");
+CuriosApi.addSlotModifier(stack, "ring", "name", resourceLocation, 2, AttributeModifier.Operation.ADDITION, "necklace");
 ```
 There are two slot identifiers in this method. The first one, `"ring"` above, denotes the slot type that the slot modifier
 gives or removes slots from. The second one, `"necklace"` above, denotes the slot type that the slot modifier becomes
 active in. In other words, the above example will give 2 `ring` slots when the item is equipped in a `necklace` slot.
-
-:::caution
-It's usually best to use `null` in place of the `uuid`, to avoid collisions as described in the preceding caution note,
-unless there is justification for providing a static UUID. Providing a `null` UUID will allow Curios to provide a
-slot-specific UUID in its place.
-:::

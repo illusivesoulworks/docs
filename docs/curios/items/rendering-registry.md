@@ -44,8 +44,7 @@ by calling the `register` method in `top.theillusivec4.curios.api.client.CuriosR
 @Mod("CurioMod")
 public class CurioMod {
   
-  public CurioMod() {
-    final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+  public CurioMod(final IEventBus eventBus) {
     eventBus.addListener(this::clientSetup);
   }
 
