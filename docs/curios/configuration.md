@@ -50,7 +50,7 @@ The order the slots will appear in the native Curios GUI, lower numbers appear f
 The location of the icon to use for the slot type.
 
 #### **add_cosmetic** (boolean)
-The location of the icon to use for the slot type.
+Whether to add a corresponding cosmetic (renderable but non-functional) slot for each slot in this slot type.
 
 #### **use_native_gui** (boolean)
 When `false`, does not add the slot type to the native Curios GUI.
