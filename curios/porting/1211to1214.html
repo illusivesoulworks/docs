@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-curios/porting/1211to1214" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">1.21.1 to 1.21.4/1.21.5 | Illusive Soulworks</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://docs.illusivesoulworks.com/curios/porting/1211to1214"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="1.21.1 to 1.21.4/1.21.5 | Illusive Soulworks"><meta data-rh="true" name="description" content="This is an overview on the breaking changes, deprecations, and future development plans for Curios on 1.21.4/1.21.5. This document"><meta data-rh="true" property="og:description" content="This is an overview on the breaking changes, deprecations, and future development plans for Curios on 1.21.4/1.21.5. This document"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://docs.illusivesoulworks.com/curios/porting/1211to1214"><link data-rh="true" rel="alternate" href="https://docs.illusivesoulworks.com/curios/porting/1211to1214" hreflang="en"><link data-rh="true" rel="alternate" href="https://docs.illusivesoulworks.com/curios/porting/1211to1214" hreflang="x-default"><link rel="stylesheet" href="/assets/css/styles.6b74ab88.css">
+<script src="/assets/js/runtime~main.40f79b14.js" defer="defer"></script>
+<script src="/assets/js/main.cab85eb3.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"dark")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.png" alt="Illusive Soulworks Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.png" alt="Illusive Soulworks Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Illusive Soulworks</b></a><div class="navbar__item dropdown dropdown--hoverable"><a aria-current="page" class="navbar__link active" aria-haspopup="true" aria-expanded="false" role="button" href="/curios/porting/1211to1214">1.21.x</a><ul class="dropdown__menu"><li><a aria-current="page" class="dropdown__link dropdown__link--active" href="/curios/porting/1211to1214">1.21.x</a></li><li><a class="dropdown__link" href="/1.20.x">1.20.x</a></li><li><a class="dropdown__link" href="/1.18.x">1.18.x</a></li><li><a class="dropdown__link" href="/versions">All versions</a></li></ul></div></div><div class="navbar__items navbar__items--right"><a href="https://github.com/illusivesoulworks" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><a href="https://discord.gg/JWgrdwt" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Discord<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently dark mode)" aria-label="Switch between dark and light mode (currently dark mode)" aria-live="polite" aria-pressed="true"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/">Overview</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" href="/category/curios">Curios</a><button aria-label="Collapse sidebar category &#x27;Curios&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/curios/getting-started">Setting Up the Development Environment</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/category/slots">Slots</a><button aria-label="Expand sidebar category &#x27;Slots&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/category/items">Items</a><button aria-label="Expand sidebar category &#x27;Items&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/category/inventory">Inventory</a><button aria-label="Expand sidebar category &#x27;Inventory&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/category/api">API</a><button aria-label="Expand sidebar category &#x27;API&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/curios/configuration">Configuration</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/curios/commands">Commands</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" tabindex="0" href="/category/porting">Porting</a><button aria-label="Collapse sidebar category &#x27;Porting&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/curios/porting/1211to1214">1.21.1 to 1.21.4/1.21.5</a></li></ul></li></ul></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item"><a class="breadcrumbs__link" itemprop="item" href="/category/curios"><span itemprop="name">Curios</span></a><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item"><a class="breadcrumbs__link" itemprop="item" href="/category/porting"><span itemprop="name">Porting</span></a><meta itemprop="position" content="2"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">1.21.1 to 1.21.4/1.21.5</span><meta itemprop="position" content="3"></li></ul></nav><span class="theme-doc-version-badge badge badge--secondary">Version: 1.21.x</span><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>1.21.1 to 1.21.4/1.21.5</h1></header>
+<p>This is an overview on the breaking changes, deprecations, and future development plans for Curios on 1.21.4/1.21.5. This document
+aims to be exhaustive and list every relevant change in each section. If there are any missing pieces of information, please
+submit a PR to this repository or initiate a support request in the Discord server.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="breaking-changes">Breaking Changes<a href="#breaking-changes" class="hash-link" aria-label="Direct link to Breaking Changes" title="Direct link to Breaking Changes">​</a></h2>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="non-deprecated">Non-Deprecated<a href="#non-deprecated" class="hash-link" aria-label="Direct link to Non-Deprecated" title="Direct link to Non-Deprecated">​</a></h3>
+<p><strong>Method</strong></p>
+<ul>
+<li><code>ICurioRenderer#render</code> (parameter change)</li>
+</ul>
+<p><strong>Description</strong></p>
+<p>The changes in rendering in Minecraft made it necessary to change the parameters to accommodate. Everything else about the method is
+unchanged so developers will just need to adjust the parameters and their implementations accordingly.</p>
+<p><strong>Class</strong></p>
+<ul>
+<li><code>DropRule</code> (package change)</li>
+</ul>
+<p><strong>Description</strong></p>
+<p><code>DropRule</code> has been moved to its own package in <code>top.theillusivec4.curios.api.common.DropRule</code> as opposed to its previous location
+as an inner enum in <code>top.theillusivec4.curios.api.type.ICurio</code>. This was not a necessary change for this version, however <code>ICurio</code> is
+being planned for future deprecation and, since <code>DropRule</code> would still be needed, it was decided to separate it now into its own
+package rather than later so that deprecation can occur without affecting the enum itself.</p>
+<p><strong>Method</strong></p>
+<ul>
+<li><code>CurioAttributeModifierEvent</code>
+<ul>
+<li><code>getId</code> (removed)</li>
+<li><code>getSlotContext</code> (removed)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Description</strong></p>
+<p>The <code>CurioAttributeModifierEvent</code> event has been refactored to better accommodate the new internal changes to curio attribute modifiers,
+which have now fully moved from <code>Multimap&lt;Holder&lt;Attribute&gt;&gt;, AttributeModifier&gt;</code> instances to the <code>CurioAttributeModifiers</code> data
+component. Some of these changes are also to better align with NeoForge&#x27;s <code>ItemAttributeModifierEvent</code>, which this event is based on.</p>
+<p>These specific methods were removed due to the fact that, since this event fires with a <code>CurioAttributeModifiers</code> context now, there is
+no longer any reference to a specific <code>SlotContext</code> or <code>ResourceLocation</code> and modifiers are instead added with a slot types or predicates
+at the time of addition.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="previously-deprecated">Previously Deprecated<a href="#previously-deprecated" class="hash-link" aria-label="Direct link to Previously Deprecated" title="Direct link to Previously Deprecated">​</a></h3>
+<p>The following methods and classes were deprecated previously and have been removed in this version:</p>
+<p><strong>Classes</strong></p>
+<ul>
+<li><code>ISlotHelper</code></li>
+<li><code>IIconHelper</code></li>
+<li><code>ICuriosHelper</code></li>
+<li><code>SlotTypeMessage</code></li>
+<li><code>SlotTypePreset</code></li>
+</ul>
+<p><strong>Methods</strong></p>
+<ul>
+<li><code>ICurio</code> and <code>ICurioItem</code>
+<ul>
+<li><code>getSlotsTooltip</code></li>
+<li><code>getAttributeModifiers(SlotContext, UUID)</code></li>
+<li><code>getDropRule(SlotContext, DamageSource, int, boolean)</code></li>
+<li><code>getAttributesTooltip</code></li>
+<li><code>SoundInfo</code>
+<ul>
+<li><code>getSoundEvent</code></li>
+<li><code>getVolume</code></li>
+<li><code>getPitch</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>CuriosApi</code>
+<ul>
+<li><code>getSlot(String)</code></li>
+<li><code>getSlotIcon(String)</code></li>
+<li><code>getSlots</code></li>
+<li><code>getEntitySlots(EntityType&lt;?&gt;)</code></li>
+<li><code>getPlayerSlots</code></li>
+<li><code>getItemStackSlots</code></li>
+<li><code>setIconHelper</code></li>
+<li><code>getIconHelper</code></li>
+<li><code>setCuriosHelper</code></li>
+<li><code>getCuriosHelper</code></li>
+<li><code>setSlotHelper</code></li>
+<li><code>getSlotHelper</code></li>
+</ul>
+</li>
+<li><code>ICuriosItemHandler</code>
+<ul>
+<li><code>getLockedSlots</code></li>
+<li><code>unlockSlotType</code></li>
+<li><code>lockSlotType</code></li>
+<li><code>processSlots</code></li>
+<li><code>getFortuneBonus</code></li>
+<li><code>growSlotType</code></li>
+<li><code>shrinkSlotType</code></li>
+</ul>
+</li>
+<li><code>ICurioStacksHandler</code>
+<ul>
+<li><code>getSizeShift</code></li>
+<li><code>grow</code></li>
+<li><code>shrink</code></li>
+</ul>
+</li>
+<li><code>ISlotType</code>
+<ul>
+<li><code>isLocked</code></li>
+<li><code>getPriority</code></li>
+<li><code>isVisible</code></li>
+</ul>
+</li>
+<li><code>ISlotData</code>
+<ul>
+<li><code>operation(AttributeModifier.Operation)</code></li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="deprecations">Deprecations<a href="#deprecations" class="hash-link" aria-label="Direct link to Deprecations" title="Direct link to Deprecations">​</a></h2>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="curiosapi"><code>CuriosApi</code><a href="#curiosapi" class="hash-link" aria-label="Direct link to curiosapi" title="Direct link to curiosapi">​</a></h3>
+<p><strong>Methods</strong></p>
+<ul>
+<li>
+<p><code>getSlot(String, Level)</code></p>
+</li>
+<li>
+<p><code>getSlot(String, boolean)</code></p>
+<ul>
+<li>Replaced by: <code>CuriosSlotTypes#getSlotType(String, boolean)</code></li>
+</ul>
+</li>
+<li>
+<p><code>getSlots(Level)</code></p>
+</li>
+<li>
+<p><code>getSlots(boolean)</code></p>
+<ul>
+<li>Replaced by: <code>CuriosSlotTypes#getSlotTypes(boolean)</code></li>
+</ul>
+</li>
+<li>
+<p><code>getPlayerSlots(Level)</code></p>
+</li>
+<li>
+<p><code>getPlayerSlots(boolean)</code></p>
+<ul>
+<li>Replaced by: <code>CuriosSlotTypes#getDefaultEntitySlotTypes(boolean)</code></li>
+</ul>
+</li>
+<li>
+<p><code>getPlayerSlots(Player)</code></p>
+</li>
+<li>
+<p><code>getEntitySlots(LivingEntity)</code></p>
+<ul>
+<li>Replaced by: <code>CuriosSlotTypes#getDefaultEntitySlotTypes(LivingEntity)</code></li>
+</ul>
+</li>
+<li>
+<p><code>getEntitySlots(EntityType&lt;?&gt;, Level)</code></p>
+</li>
+<li>
+<p><code>getEntitySlots(EntityType&lt;?&gt;, boolean)</code></p>
+<ul>
+<li>Replaced by: <code>CuriosSlotTypes#getDefaultEntitySlotTypes(EntityType&lt;?&gt;, boolean)</code></li>
+</ul>
+</li>
+<li>
+<p><code>getItemStackSlots(ItemStack, Level)</code></p>
+</li>
+<li>
+<p><code>getItemStackSlots(ItemStack, boolean)</code></p>
+<ul>
+<li>Replaced by: <code>CuriosSlotTypes#getItemSlotTypes(ItemStack, boolean)</code></li>
+</ul>
+</li>
+<li>
+<p><code>getItemStackSlots(ItemStack, LivingEntity)</code></p>
+<ul>
+<li>Replaced by: <code>CuriosSlotTypes#getItemSlotTypes(ItemStack, LivingEntity)</code></li>
+</ul>
+</li>
+<li>
+<p><code>getAttributeModifiers</code></p>
+<ul>
+<li>Replaced by: <code>ICurioItem#getAttributeModifiers(ItemStack)</code></li>
+</ul>
+</li>
+<li>
+<p><code>addSlotModifier(Multimap&lt;Holder&lt;Attribute&gt;, AttributeModifier&gt;, String, ResourceLocation, double, AttributeModifier.Operation)</code></p>
+</li>
+<li>
+<p><code>addSlotModifier(ItemStack, String, ResourceLocation, double, AttributeModifier.Operation, String)</code></p>
+</li>
+<li>
+<p><code>addModifier</code></p>
+<ul>
+<li>Replaced by: <code>CurioAttributeModifiers</code></li>
+</ul>
+</li>
+<li>
+<p><code>withSlotModifier</code></p>
+<ul>
+<li>Replaced by: None, replacement functionality still pending implementation.</li>
+</ul>
+</li>
+<li>
+<p><code>registerCurioPredicate</code></p>
+<ul>
+<li>Replaced by: <code>CuriosSlotTypes#registerPredicate</code></li>
+</ul>
+</li>
+<li>
+<p><code>getCurioPredicate</code></p>
+<ul>
+<li>Replaced by: <code>CuriosSlotTypes#getPredicate</code></li>
+</ul>
+</li>
+<li>
+<p><code>getCurioPredicates</code></p>
+<ul>
+<li>Replaced by: <code>CuriosSlotTypes#getPredicates</code></li>
+</ul>
+</li>
+<li>
+<p><code>testPredicates</code></p>
+<ul>
+<li>Replaced by: <code>CuriosSlotTypes#testPredicates</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>Description</strong></p>
+<p>These deprecations serve as the first part of future plans to deprecate the entirety of the <code>CuriosApi</code> class. The purpose is to avoid
+having disparate methods all in the same class, while also increasing discovery for these methods by categorizing them appropriately
+into separate delegate classes. The new <code>CuriosSlotTypes</code> class will serve as the functional replacement for the methods in this class
+and also the methods in the removed <code>ISlotHelper</code> class, with logic related to one or more slot types. In addition, <code>ICurioItem</code> and
+<code>CurioAttributeModifiers</code> will handle curio attribute modifiers depending on which is more appropriate.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="items">Items<a href="#items" class="hash-link" aria-label="Direct link to Items" title="Direct link to Items">​</a></h3>
+<p><strong>Methods</strong></p>
+<p><code>ICurio</code> and <code>ICurioItem</code></p>
+<ul>
+<li><code>getAttributeModifiers(SlotContext, UUID)</code>
+<ul>
+<li>Replaced by: <code>getDefaultCurioAttributeModifiers</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>Description</strong></p>
+<p>These deprecations follow the new internal changes to curio attribute modifiers, which have now fully moved from
+<code>Multimap&lt;Holder&lt;Attribute&gt;&gt;, AttributeModifier&gt;</code> instances to the <code>CurioAttributeModifiers</code> data component. Due to this, the original
+attribute modifier methods that utilize maps are no longer recommended in favor of a new one that uses the component class instead.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="rendering">Rendering<a href="#rendering" class="hash-link" aria-label="Direct link to Rendering" title="Direct link to Rendering">​</a></h3>
+<p><strong>Class</strong></p>
+<p><code>CuriosRendererRegistry</code></p>
+<p><strong>Methods</strong></p>
+<p><code>CuriosRendererRegistry</code></p>
+<ul>
+<li><code>register</code>
+<ul>
+<li>Replaced by: <code>ICurioRenderer#register</code></li>
+</ul>
+</li>
+<li><code>getRenderer</code>
+<ul>
+<li>Replaced by: <code>ICurioRenderer#get</code> and <code>ICurioRenderer#getOrNull</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>Description</strong></p>
+<p>These methods and the class have all been deprecated. This decision was made to streamline both discovery and usage by relocating
+these methods to the interface that developers use most directly. The deprecated class simply redirects its methods to the new methods,
+so while they are candidates for removal in future breaking versions they are not high-priority targets and will likely remain for
+several versions since these methods are the primary ones used by developers.</p>
+<p><strong>Methods</strong></p>
+<p><code>ICurioRenderer</code></p>
+<ul>
+<li><code>translateIfSneaking</code></li>
+<li><code>rotateIfSneaking</code></li>
+<li><code>followHeadRotations</code></li>
+<li><code>followBodyRotations</code>
+<ul>
+<li>Replaced by: <code>ICurioRenderer#setupHumanoidAnimations</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>Description</strong></p>
+<p>These utility methods in the <code>ICurioRenderer</code> interface have been deprecated. Due to the rendering changes in Minecraft and the
+breaking changes in the <code>render</code> method, a new method <code>setupHumanoidAnimations</code> has been created to both accommodate these
+changes and create a more complete a robust solution to humanoid animations on models. The utility methods before were functional
+but clunky to use and didn&#x27;t always function as expected due to the intermingling of different parts and hardcoded values. The
+new method simply takes a model, provided by the implementation, and a render state, provided by the <code>render</code> parameters, and
+will do all of the necessary transformations previously enabled by the deprecated methods.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="events">Events<a href="#events" class="hash-link" aria-label="Direct link to Events" title="Direct link to Events">​</a></h3>
+<p><strong>Methods</strong></p>
+<p><code>CurioAttributeModifierEvent</code></p>
+<ul>
+<li><code>getModifiers</code>
+<ul>
+<li>Replaced by: <code>getImmutableModifiers</code></li>
+</ul>
+</li>
+<li><code>getOriginalModifiers</code>
+<ul>
+<li>Replaced by: <code>getDefaultModifiers</code></li>
+</ul>
+</li>
+<li><code>removeModifier(Holder&lt;Attribute&gt;, AttributeModifier)</code>
+<ul>
+<li>Replaced by: <code>removeModifier(Holder&lt;Attribute&gt;, ResourceLocation)</code></li>
+</ul>
+</li>
+<li><code>removeAttribute(Holder&lt;Attribute&gt;)</code>
+<ul>
+<li>Replaced by: <code>removeAllModifiersFor(Holder&lt;Attribute&gt;)</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>Description</strong></p>
+<p>These deprecations follow the breaking changes to the class noted above.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="others">Others<a href="#others" class="hash-link" aria-label="Direct link to Others" title="Direct link to Others">​</a></h3>
+<p><strong>Method</strong></p>
+<p><code>ICurioSlotExtension#getSlotTooltip(SlotContext, TooltipFlag)</code></p>
+<ul>
+<li>Replaced by: <code>ICurioSlotExtension#getSlotTooltip(SlotContext, List&lt;Component&gt;, TooltipFlag)</code></li>
+</ul>
+<p><strong>Description</strong></p>
+<p>This method is replaced by a better one that receives the original tooltip, allowing for potential modification or checking.</p>
+<p><strong>Method</strong></p>
+<p><code>ISlotType#getIdentifier</code></p>
+<ul>
+<li>Replaced by: <code>ISlotType#getId</code></li>
+</ul>
+<p><strong>Description</strong></p>
+<p>This method is simply replaced by a more concisely named one. This is one of the few deprecations not marked for removal, since
+its continuity adds no future maintenance burden or concerns.</p>
+<p><strong>Class</strong></p>
+<p><code>CuriosTooltip</code></p>
+<ul>
+<li>All methods</li>
+</ul>
+<p><strong>Description</strong></p>
+<p>Due to the transition to using NeoForge&#x27;s native tooltip utilities and events, this class no longer serves an effective function
+and is thus deprecated.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="development-plans">Development Plans<a href="#development-plans" class="hash-link" aria-label="Direct link to Development Plans" title="Direct link to Development Plans">​</a></h2>
+<p>These are broad outlines for plans and ideas for future development that are considered high-priority but with no target version
+or date in mind for their completion.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="inventory-refactor">Inventory Refactor<a href="#inventory-refactor" class="hash-link" aria-label="Direct link to Inventory Refactor" title="Direct link to Inventory Refactor">​</a></h3>
+<p>Although there have been various updates, features, and changes to the curio inventory system, a lot of the foundations have remained
+the same since its inception. This is partially due to the work involved in rewriting it, but also because rewriting it would
+subsequently affect many other parts of the API in a way that would ultimately culminate in a rather large recoding burden for developers.
+For those reasons, plans to fundamentally redesign the inventory were put on hold for a long time.</p>
+<p>However, the current system has now reached the limits of what it&#x27;s capable of and is also now limiting the capabilities of the API
+as some recent attempts to implement specific new features proved either difficult or impossible. So the current plans are to
+refactor the whole inventory system, and to try and do so in a way that leads to the least amount of breaking changes between versions
+in order to allow developers time to update as needed.</p>
+<p>Specifically, this would mostly target the <code>ICuriosItemHandler</code>, <code>ICurioStacksHandler</code>, and <code>IDynamicStackHandler</code> interfaces in the API.
+Because of how intricately linked these interfaces are to the inventory, breaking changes are inevitable. It&#x27;s likely that <code>ICurioStacksHandler</code>
+and <code>IDynamicStackHandler</code> will see a removal once the refactor is done, as deprecation would be difficult or impossible. Conversely,
+<code>ICuriosItemHandler</code> could potentially continue to exist through a wrapper implementation around the new inventory system.</p>
+<p>As mentioned previously, these changes would also likely have ramifications across the entire API, particularly any points that touch
+the inventory system. The most prominent example being <code>SlotContext</code>, which may see changes or even replacement depending on what
+the final implementation looks like.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="icurioitem-consolidation"><code>ICurioItem</code> Consolidation<a href="#icurioitem-consolidation" class="hash-link" aria-label="Direct link to icurioitem-consolidation" title="Direct link to icurioitem-consolidation">​</a></h3>
+<p>There currently exists two separate interfaces for curio items, <code>ICurio</code> and <code>ICurioItem</code>. This wasn&#x27;t the intended design at first, but
+became necessary in order to meet the needs of both direct implementations and capability-based ones.</p>
+<p>However, having two interfaces leads to more confusion and a lot of redundancy in the API to accommodate them. In addition, having two
+is not strictly necessary to provide the functionality that they were intended for. So the current plans are to merge them both and
+leave only <code>ICurioItem</code>, which will also help consolidate some curio-based utility methods into the same interface.</p>
+<p>This would likely occur before the above-mentioned inventory refactor, due to the presence of <code>SlotContext</code> in many of the method
+parameters in these classes. If <code>SlotContext</code> is changed due to the inventory refactor, it would only require updating/deprecating one
+class rather than two.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/illusivesoulworks/docs/edit/main/docs/curios/porting/1211to1214.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/category/porting"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Porting</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#breaking-changes" class="table-of-contents__link toc-highlight">Breaking Changes</a><ul><li><a href="#non-deprecated" class="table-of-contents__link toc-highlight">Non-Deprecated</a></li><li><a href="#previously-deprecated" class="table-of-contents__link toc-highlight">Previously Deprecated</a></li></ul></li><li><a href="#deprecations" class="table-of-contents__link toc-highlight">Deprecations</a><ul><li><a href="#curiosapi" class="table-of-contents__link toc-highlight"><code>CuriosApi</code></a></li><li><a href="#items" class="table-of-contents__link toc-highlight">Items</a></li><li><a href="#rendering" class="table-of-contents__link toc-highlight">Rendering</a></li><li><a href="#events" class="table-of-contents__link toc-highlight">Events</a></li><li><a href="#others" class="table-of-contents__link toc-highlight">Others</a></li></ul></li><li><a href="#development-plans" class="table-of-contents__link toc-highlight">Development Plans</a><ul><li><a href="#inventory-refactor" class="table-of-contents__link toc-highlight">Inventory Refactor</a></li><li><a href="#icurioitem-consolidation" class="table-of-contents__link toc-highlight"><code>ICurioItem</code> Consolidation</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Illusive Soulworks, Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>
