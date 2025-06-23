@@ -16,7 +16,7 @@ This inventory can be used for a variety of purposes, such as finding out which 
 modifying the number of slots that are in each sub-inventory.
 
 The interface for the Curios inventory can be found as `top.theillusivec4.curios.api.type.capability.ICuriosItemHandler`,
-which holds all of the methods that developers can use to access and manage the inventory.
+which holds all the methods that developers can use to access and manage the inventory.
 
 ## Using the inventory
 ---
@@ -42,6 +42,38 @@ CuriosApi.getCuriosInventory(livingEntity).ifPresent(curiosInventory -> {
 
 Once a developer has the `ICuriosItemHandler` instance, they can use the methods from that instance to interact with the
 Curios inventory.
+
+### Without external dependencies
+
+It's possible to access the Curios inventory without a declared dependency on Curios in a developer's mod. This provides
+a way to code simple Curios compatibility without needing to manage an additional external dependency on Curios itself
+or any of its classes.
+
+In order to do so, first declare a field for the entity capability in any class, like the following example:
+
+```java
+public class CuriosCompatibility {
+
+  public static final EntityCapability<IItemHandler, Void> CURIOS_INVENTORY =
+      EntityCapability.createVoid(ResourceLocation.fromNamespaceAndPath("curios", "item_handler"), IItemHandler.class);
+}
+```
+
+Since Curios is the one responsible for registering this capability, this is all developers need to do to gain access to
+the `IItemHandler` instance.
+
+To retrieve the inventory instance, developers can call the previously declared field like any other capability using
+`LivingEntity#getCapability` provided by NeoForge:
+
+```java
+livingEntity.getCapability(CuriosCompatibility.CURIOS_INVENTORY);
+```
+This capability, like the native Curios one, is not guaranteed to exist on every instance of `LivingEntity` so an
+additional `null` check is recommended before accessing the returned `IItemHandler`.
+
+The returned `IItemHandler` _can_ be used to modify both the inventory contents and the stack contents using the
+methods provided in the `IItemHandler` interface. These changes will be reflected back onto the main inventory object.
+
 
 ## Accessing the inventory
 ---
