@@ -84,12 +84,12 @@ whether the developer wants to access all of the slot inventories or just a part
 
 ### Accessing the entire inventory
 
-The entire Curios inventory exists as a `Map<String, ICurioStackHandler>`, with the slot type identifiers acting as each
-key and the `ICurioStackHandler` acting as the inventory attached to the slot type. To access this, the `getCurios`
+The entire Curios inventory exists as a `Map<String, ICurioStacksHandler>`, with the slot type identifiers acting as each
+key and the `ICurioStacksHandler` acting as the inventory attached to the slot type. To access this, the `getCurios`
 method can be used:
 
 ```java
-Map<String, ICurioStackHandler> curios = curiosInventory.getCurios();
+Map<String, ICurioStacksHandler> curios = curiosInventory.getCurios();
 ```
 :::caution
 This returns an **unmodifiable** map so attempts to change the structure of the map directly through this method, such
@@ -108,7 +108,7 @@ curios.forEach((identifier, slotInventory) -> {
 Or developers can access a particular sub-inventory, such as a slot type with the `"ring"` identifier:
 
 ```java
-ICurioStackHandler slotInventory = curios.get("ring");
+ICurioStacksHandler slotInventory = curios.get("ring");
 
 // null check to ensure that the slot inventory exists
 if (slotInventory != null) {
@@ -125,7 +125,7 @@ In order to access a particular inventory for slot type, developers can either a
 in the preceding section or skip straight to a sub-inventory for that slot type:
 
 ```java
-Optional<ICurioStackHandler> slotInventory = curiosInventory.getStacksHandler("ring");
+Optional<ICurioStacksHandler> slotInventory = curiosInventory.getStacksHandler("ring");
 ```
 
 The above code will retrive an `Optional` for the slot inventory with the `"ring"` identifier passed into the
