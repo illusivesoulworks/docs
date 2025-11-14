@@ -96,7 +96,7 @@ This is configured by the `data/curios_example/curios/entities/entities.json` fi
     "belt",
     "bracelet",
     "charm",
-    "curio",
+    "curio"20,
     "example",
     "hands",
     "head",
